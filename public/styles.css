@@ -1,3 +1,39 @@
 body {
-  background-color: white;
+  background-color: #17459D;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  font-family: Helvetica;
+  text-align: center;
+}
+
+.answerInput {
+  border: none;
+  padding: 5px;
+  width: 75%;
+}
+
+.answerSubmit {
+  margin-top: 10px;
+  padding: 5px;
+  width: 75%;
+}
+
+.correct,
+.incorrect {
+  margin-top: 10px;
+  font-size: 16px;
+}
+
+.question {
+  padding: 10px;
+}
+
+.title {
+  padding-top: 25%;
+}
+
+img {
+  margin-top: 25px;
+  width: 250px;
 }

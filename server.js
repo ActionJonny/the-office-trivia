@@ -21,10 +21,9 @@ app.get('/', (request, response) => {
   });
 });
 
-app.get('/api/v1/trivia/:id', async (request, response) => {
+app.get('/api/v1/trivia/', async (request, response) => {
   try {
-    const triviaQuestions = await database('questions')
-    .where('id', request.params.id).select();
+    const triviaQuestions = await database('questions').select();
 
     response.status(200).json(triviaQuestions);
   } catch (error) {

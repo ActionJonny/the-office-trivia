@@ -4,9 +4,7 @@ $(document).ready(() => {
 
 const fetchQuestions = () => {
   $('.questionCard').remove();
-  fetch(`/api/v1/trivia`, {
-    async:false,
-  })
+  fetch(`/api/v1/trivia`)
   .then(response => response.json())
   .then(json => {
     let randomNumber = Math.floor(Math.random() * (json.length - 0));

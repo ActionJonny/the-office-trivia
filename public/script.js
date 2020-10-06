@@ -36,7 +36,6 @@ const appendCorrect = () => {
 
 const appendIncorrect = (answer) => {
   let randomNumber = Math.floor(Math.random() * (10 - 1 + 1) + 1);
-  console.log(randomNumber, 'incorrect');
 
   $('.questionCard').append(`
     <div class="incorrect">The correct answer is: ${ answer } </div>

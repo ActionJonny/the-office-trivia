@@ -84,9 +84,9 @@ ALTER SEQUENCE public.knex_migrations_lock_index_seq OWNED BY public.knex_migrat
 
 CREATE TABLE public."theOfficeTrivia" (
     id integer NOT NULL,
-    "triviaQuestion" character varying(255),
-    "triviaAnswer" character varying(255),
-    trivia_id integer,
+    question character varying(255) NOT NULL,
+    answer character varying(255) NOT NULL,
+    "triviaGames_id" integer,
     created_at timestamp with time zone DEFAULT now() NOT NULL,
     updated_at timestamp with time zone DEFAULT now() NOT NULL
 );
@@ -117,7 +117,7 @@ ALTER SEQUENCE public."theOfficeTrivia_id_seq" OWNED BY public."theOfficeTrivia"
 
 CREATE TABLE public."triviaGames" (
     id integer NOT NULL,
-    "triviaName" character varying(255) NOT NULL,
+    name character varying(255) NOT NULL,
     created_at timestamp with time zone DEFAULT now() NOT NULL,
     updated_at timestamp with time zone DEFAULT now() NOT NULL
 );
@@ -175,7 +175,7 @@ ALTER TABLE ONLY public."triviaGames" ALTER COLUMN id SET DEFAULT nextval('publi
 --
 
 COPY public.knex_migrations (id, name, batch, migration_time) FROM stdin;
-1	20200910171443_initial.js	1	2020-09-22 13:10:14.653-06
+7	20200911142846_initial.js	1	2020-10-06 11:05:50.752-06
 \.
 
 
@@ -192,110 +192,110 @@ COPY public.knex_migrations_lock (index, is_locked) FROM stdin;
 -- Data for Name: theOfficeTrivia; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public."theOfficeTrivia" (id, "triviaQuestion", "triviaAnswer", trivia_id, created_at, updated_at) FROM stdin;
-1	The casting team originally wanted who to audition for the role of Dwight?	John Krasinski	\N	2020-09-22 13:14:47.093883-06	2020-09-22 13:14:47.093883-06
-2	John Krasinski, Mindy Kaling, and who else were all, at one point, interns at Late Night With Conan O’Brien?	Angela Kinsey	\N	2020-09-22 13:14:47.10977-06	2020-09-22 13:14:47.10977-06
-3	Who almost didn’t work in The Office because he was committed to another NBC show called Come to Papa?	Steve Carell	\N	2020-09-22 13:14:47.115715-06	2020-09-22 13:14:47.115715-06
-4	During his embarrassing Dundie award presentation, whom is Michael Scott presenting a Dundie award when he sings along to “You Sexy Thing” by ’70s British funk band Hot Chocolate?	Ryan	\N	2020-09-22 13:14:47.116772-06	2020-09-22 13:14:47.116772-06
-5	In “The Alliance” episode, Michael is asked by Oscar to donate to his nephew’s walkathon for a charity. How much money does Michael donate, not realizing that the donation is per mile and not a flat amount?	$25	\N	2020-09-22 13:14:47.118446-06	2020-09-22 13:14:47.118446-06
-6	Which character became Jim’s love interest after he moved to the Stamford branch in season three and joined the Scranton office during the merger?	Karen Filippelli	\N	2020-09-22 13:14:47.11905-06	2020-09-22 13:14:47.11905-06
-7	What county in Pennsylvania is Dunder Mifflin Scranton branch located?	Lackawanna County	\N	2020-09-22 13:14:47.120872-06	2020-09-22 13:14:47.120872-06
-8	What is the exclusive club that Pam, Oscar, and Toby Flenderson establish in the episode “Branch Wars”?	Finer Things Club	\N	2020-09-22 13:14:47.122061-06	2020-09-22 13:14:47.122061-06
-9	What substance does Jim put office supplies owned by Dwight into?	Jello	\N	2020-09-22 13:14:47.127066-06	2020-09-22 13:14:47.127066-06
-10	What is the name of the employee who started out as “the temp” in the Dunder Mifflin office?	Ryan	\N	2020-09-22 13:14:47.127616-06	2020-09-22 13:14:47.127616-06
-11	Dwight owns and runs a farm in his spare time. What does this farm primarily produce?	Beets	\N	2020-09-22 13:14:47.128973-06	2020-09-22 13:14:47.128973-06
-12	Rainn Wilson did not originally audition for the part of the iconic beet farming Dwight Schrute, instead he auditioned for which part?	Michael Scott	\N	2020-09-22 13:14:47.128951-06	2020-09-22 13:14:47.128951-06
-13	In “Diversity Day” episode what famous comedian’s stand up routine does Michael imitate?	Chris Rock	\N	2020-09-22 13:14:47.132443-06	2020-09-22 13:14:47.132443-06
-14	In the episode “The Client”, the employees were reading Michael’s movie script. Which employee read the part of Goldenface?	Oscar	\N	2020-09-22 13:14:47.1336-06	2020-09-22 13:14:47.1336-06
-15	What does Michael burn his foot on?	A George Foreman Grill that he was cooking bacon on	\N	2020-09-22 13:14:47.134205-06	2020-09-22 13:14:47.134205-06
-16	Who are the three main members of the party planning committee?	Phyllis, Angela, and Pam	\N	2020-09-22 13:14:47.134731-06	2020-09-22 13:14:47.134731-06
-17	What does Michael pretend to fire Pam over in season one?	Stealing Post-It notes	\N	2020-09-22 13:14:47.135248-06	2020-09-22 13:14:47.135248-06
-18	What kind of sandwich does Michael have a dream about when he’s the head of Michael Scott Paper Company?	Peanut butter and tunafish	\N	2020-09-22 13:14:47.14117-06	2020-09-22 13:14:47.14117-06
-19	What’s the name of Dwight’s porcupine who he used to make it look like Jim was pranking him?	Henrietta	\N	2020-09-22 13:14:47.142626-06	2020-09-22 13:14:47.142626-06
-20	What’s in the thermos that Michael offers Pam during morning deliveries for the Michael Scott Paper Company?	Milk and sugar	\N	2020-09-22 13:14:47.143216-06	2020-09-22 13:14:47.143216-06
-21	What brand is Michael Scott wearing on the day he accidentally wearing a woman’s suit?	MISSsterious	\N	2020-09-22 13:14:47.143721-06	2020-09-22 13:14:47.143721-06
-22	Who does Michael wear on his head during the activity on diversity day?	Martin Luther King Jr.	\N	2020-09-22 13:14:47.144223-06	2020-09-22 13:14:47.144223-06
-23	During the episode, “Prince Family Paper,” what’s the secret signal that Dwight and Michael agree on using?	Licking your lips	\N	2020-09-22 13:14:47.144702-06	2020-09-22 13:14:47.144702-06
-24	Who calls Jim by the nicknames “Tuna” or “Big Tuna”?	Andy	\N	2020-09-22 13:14:47.14518-06	2020-09-22 13:14:47.14518-06
-25	At Jim and Pam’s wedding in the “Niagara” episode, what was Kevin wearing on his feet?	Tissue Boxes	\N	2020-09-22 13:14:47.145675-06	2020-09-22 13:14:47.145675-06
-26	What does Jim use to make Dwight salivate in “Phyllis’ Wedding”?	Altoids	\N	2020-09-22 13:14:47.146314-06	2020-09-22 13:14:47.146314-06
-27	What does Michael eat instead of ice cream because they don’t have any?	Mayo and black olives	\N	2020-09-22 13:14:47.146964-06	2020-09-22 13:14:47.146964-06
-28	In the episode “The Coup”, the members of the Stamford branch play what video game with each other?	Call of Duty	\N	2020-09-22 13:14:47.151684-06	2020-09-22 13:14:47.151684-06
-29	What of the following colors does Angela think is “whore-ish”?	Green	\N	2020-09-22 13:14:47.152173-06	2020-09-22 13:14:47.152173-06
-30	Jim Halpert knows the flavor of yogurt that Pam likes best, what is it?	Mixed Berry	\N	2020-09-22 13:14:47.152653-06	2020-09-22 13:14:47.152653-06
-31	Who took over Pam as the receptionist after she went to art school in season 5?	Ryan	\N	2020-09-22 13:14:47.153373-06	2020-09-22 13:14:47.153373-06
-32	Who runs the warehouse below the Dunder Mifflin offices?	Darryl	\N	2020-09-22 13:14:47.15399-06	2020-09-22 13:14:47.15399-06
-33	What does Dwight keep a pair of in his car for special occasions?	Birkenstocks	\N	2020-09-22 13:14:47.154602-06	2020-09-22 13:14:47.154602-06
-34	What is Toby’s daughter’s name?	Sasha	\N	2020-09-22 13:14:47.155476-06	2020-09-22 13:14:47.155476-06
-35	What is the name of the actor who plays Toby Flenderson?	Paul Lieberstein	\N	2020-09-22 13:14:47.157102-06	2020-09-22 13:14:47.157102-06
-36	Which actor shares his entire name with his character?	Creed Bratton	\N	2020-09-22 13:14:47.160591-06	2020-09-22 13:14:47.160591-06
-37	In 2019 Jenna Fischer and who else started an Office re-watch podcast entitled “The Office Ladies”?	Angela Kingsey	\N	2020-09-22 13:14:47.161093-06	2020-09-22 13:14:47.161093-06
-38	In the episode “Fun Run”, who are the three employees that go out to eat in the middle of the run?	Creed, Oscar and Stanley	\N	2020-09-22 13:14:47.161847-06	2020-09-22 13:14:47.161847-06
-39	Who served on the jury for the Scranton strangler case?	Toby Flenderson	\N	2020-09-22 13:14:47.162796-06	2020-09-22 13:14:47.162796-06
-40	Who punches a hole in the wall in between Michael’s office and the conference room?	Andy	\N	2020-09-22 13:14:47.163562-06	2020-09-22 13:14:47.163562-06
-41	NBC passed a pilot for a spin-off called “The Farm.” Who was it about?	Dwight Schrute	\N	2020-09-22 13:14:47.166474-06	2020-09-22 13:14:47.166474-06
-42	After the show was first picked up, what did NBC planned on retitling the series in order to differentiate it from the original British version?	“The American Workplace”	\N	2020-09-22 13:14:47.167885-06	2020-09-22 13:14:47.167885-06
-43	What actor starred in the British version of The Office?	Ricky Gervais	\N	2020-09-22 13:14:47.168931-06	2020-09-22 13:14:47.168931-06
-44	Who is the proud owner of a Cornell hockey bobblehead?	Andy	\N	2020-09-22 13:14:47.169691-06	2020-09-22 13:14:47.169691-06
-45	Through out the show it was revealed that one of the members of the office graduated High School with Michael. Who was it?	Phyllis	\N	2020-09-22 13:14:47.170651-06	2020-09-22 13:14:47.170651-06
-46	In the Season 4 pilot episode “Fun Run”, what cause does Michael organize a fun run for?	Rabies	\N	2020-09-22 13:14:47.177517-06	2020-09-22 13:14:47.177517-06
-47	What is the number one rated Country and Western station in Scranton, Pennsylvania? (hint	it’s a bumper sticker on Dwight’s desk)	\N	2020-09-22 13:14:47.178345-06	2020-09-22 13:14:47.178345-06
-48	What color does Dwight paint Michael’s office when he thinks he’s taking over Michael’s job?	Black	\N	2020-09-22 13:14:47.179091-06	2020-09-22 13:14:47.179091-06
-49	In what episode does Jim propose to Pam?	“Weight Loss”	\N	2020-09-22 13:14:47.180182-06	2020-09-22 13:14:47.180182-06
-50	Which network produced “The Office”?	NBC	\N	2020-09-22 13:14:47.182885-06	2020-09-22 13:14:47.182885-06
-51	What is the middle name of Gabe Lewis?	Susan	\N	2020-09-22 13:14:47.183818-06	2020-09-22 13:14:47.183818-06
-52	What actor played Robert California?	James Spader	\N	2020-09-22 13:14:47.184565-06	2020-09-22 13:14:47.184565-06
-53	Which of Angela’s cats does Dwight freeze?	Sprinkles	\N	2020-09-22 13:14:47.185107-06	2020-09-22 13:14:47.185107-06
-55	Which office employee did Michael hit with his car?	Meredith	\N	2020-09-22 13:14:47.188796-06	2020-09-22 13:14:47.188796-06
-54	Which cast member was having an affair with Angela’s fiancé, the senator?	Oscar	\N	2020-09-22 13:14:47.18578-06	2020-09-22 13:14:47.18578-06
-70	Who wins the Fun Run in season 4?	Toby Flenderson	\N	2020-09-22 13:14:47.224445-06	2020-09-22 13:14:47.224445-06
-79	How does Michael describe the wine in the episode, “Dinner Party”?	An oaky afterbirth	\N	2020-09-22 13:14:47.235043-06	2020-09-22 13:14:47.235043-06
-88	In almost every meeting, Stanley is seen doing what?	A crossword puzzel	\N	2020-09-22 13:14:47.244555-06	2020-09-22 13:14:47.244555-06
-98	What is the the name of the annual employee awards night on the show?	Dundies	\N	2020-09-22 13:14:47.253236-06	2020-09-22 13:14:47.253236-06
-56	Who started the fire?	Ryan	\N	2020-09-22 13:14:47.191666-06	2020-09-22 13:14:47.191666-06
-64	Where does Jim propose to Pam?	Gas station	\N	2020-09-22 13:14:47.212937-06	2020-09-22 13:14:47.212937-06
-73	What actor on The Office shot the opening credit footage?	John Krasinski	\N	2020-09-22 13:14:47.228228-06	2020-09-22 13:14:47.228228-06
-82	Who was responsible for casting The Office characters?	Allison Jones	\N	2020-09-22 13:14:47.240788-06	2020-09-22 13:14:47.240788-06
-92	Which character speaks the the first line of the series and which character delivers the final line?	Michael Scott (Steve Carell), Pam Beesly (Jenna Fischer)	\N	2020-09-22 13:14:47.249737-06	2020-09-22 13:14:47.249737-06
-101	After the Fun Run to beat Rabies, to whom is the oversized check made out?	Science	\N	2020-09-22 13:14:47.260008-06	2020-09-22 13:14:47.260008-06
-57	What is Michael’s username for the online dating website?	Little Kid Lover	\N	2020-09-22 13:14:47.195909-06	2020-09-22 13:14:47.195909-06
-65	Angela, played by Angela Kinsey, mentions that her favorite song is what?	Little Drummer Boy	\N	2020-09-22 13:14:47.217473-06	2020-09-22 13:14:47.217473-06
-74	What actor from The Office and John Krasinski went to the same high school?	B.J. Novak	\N	2020-09-22 13:14:47.228813-06	2020-09-22 13:14:47.228813-06
-83	In the episode “Basketball,” after the game between the office workers and warehouse workers, one of the office workers is shown continuously making shots. Which employee is it?	Kevin	\N	2020-09-22 13:14:47.241452-06	2020-09-22 13:14:47.241452-06
-93	Who plays Todd Packer, a former employee and Michael’s friend?	David Koechner	\N	2020-09-22 13:14:47.250302-06	2020-09-22 13:14:47.250302-06
-102	Based on where he eats most often, what is Michael Scott’s favorite restaurant?	Chili’s	\N	2020-09-22 13:14:47.260372-06	2020-09-22 13:14:47.260372-06
-58	What vegetable does Michael force feed Kevin?	Broccoli	\N	2020-09-22 13:14:47.198638-06	2020-09-22 13:14:47.198638-06
-66	In the episode “Basketball,” who does Michael say is on the team, ‘of course’?	Stanley	\N	2020-09-22 13:14:47.219369-06	2020-09-22 13:14:47.219369-06
-75	What item of clothing does Michael insist on having dry cleaned?	His jeans	\N	2020-09-22 13:14:47.229501-06	2020-09-22 13:14:47.229501-06
-84	What can Dwight Shrute supposedly raise and lower at his will?	His cholesterol	\N	2020-09-22 13:14:47.242088-06	2020-09-22 13:14:47.242088-06
-94	What is the name of Phyllis’ husband who also happens to work in the same office complex?	Bob Vance	\N	2020-09-22 13:14:47.250838-06	2020-09-22 13:14:47.250838-06
-103	What art school did Pam go to?	Pratt Institute	\N	2020-09-22 13:14:47.260999-06	2020-09-22 13:14:47.260999-06
-59	Whose mother does Michael date?	Pam	\N	2020-09-22 13:14:47.199627-06	2020-09-22 13:14:47.199627-06
-67	Where did Michael get his “World’s Best Boss” mug?	Spencer Gifts	\N	2020-09-22 13:14:47.220744-06	2020-09-22 13:14:47.220744-06
-76	Who is the Regional Manager at Dunder Mifflin?	Michael Scott	\N	2020-09-22 13:14:47.230281-06	2020-09-22 13:14:47.230281-06
-85	Which warehouse employee was engaged to Pam?	Roy	\N	2020-09-22 13:14:47.24273-06	2020-09-22 13:14:47.24273-06
-95	Who is the Human Resources representative at Dunder Mifflin?	Toby	\N	2020-09-22 13:14:47.251373-06	2020-09-22 13:14:47.251373-06
-60	What is Scranton’s nickname?	The Electric City	\N	2020-09-22 13:14:47.201051-06	2020-09-22 13:14:47.201051-06
-68	In the “St. Patrick’s Day” episode, who gets sick on their first date with Andy?	Erin	\N	2020-09-22 13:14:47.222329-06	2020-09-22 13:14:47.222329-06
-77	Who wins the bronze medal in the episode, “Office Olympics”?	Jim	\N	2020-09-22 13:14:47.233515-06	2020-09-22 13:14:47.233515-06
-86	What movie does Michael say that Dwight cried during?	Armageddon	\N	2020-09-22 13:14:47.243349-06	2020-09-22 13:14:47.243349-06
-96	In the episode “Andy’s Play”, Andy Bernard performed in a local theatre production of what?	Sweeney Todd	\N	2020-09-22 13:14:47.251923-06	2020-09-22 13:14:47.251923-06
-61	In the season 2 episode “Christmas Party,” what Secret Santa gift does Jim get Pam?	Teapot	\N	2020-09-22 13:14:47.201819-06	2020-09-22 13:14:47.201819-06
-69	What did Phyllis ask Michael to do in her wedding?	Push her father down the isle in his wheelchair	\N	2020-09-22 13:14:47.223932-06	2020-09-22 13:14:47.223932-06
-78	In the episode, “Diwali”, who attempts to kiss Pam?	Michael	\N	2020-09-22 13:14:47.23438-06	2020-09-22 13:14:47.23438-06
-87	When is Michael’s birthday?	March 15	\N	2020-09-22 13:14:47.243964-06	2020-09-22 13:14:47.243964-06
-97	In the episode “Take Your Daughter to Work Day,” one employee’s daughter is flirting with Ryan Howard. Whose daughter was it?	Stanley	\N	2020-09-22 13:14:47.25255-06	2020-09-22 13:14:47.25255-06
-62	Who convinces Dwight that he is being recruited by the CIA?	Pam	\N	2020-09-22 13:14:47.202639-06	2020-09-22 13:14:47.202639-06
-71	What song does Michael dance down the aisle to during Pam and Jim’s wedding?	“Forever” by Chris Brown	\N	2020-09-22 13:14:47.226935-06	2020-09-22 13:14:47.226935-06
-81	Which one of Michael’s girlfriends in The Office was played by Steve Carell’s real-life wife?	Carol	\N	2020-09-22 13:14:47.239946-06	2020-09-22 13:14:47.239946-06
-89	Jenna Fischer kept what after the series wrapped up?	Pam’s engagement ring	\N	2020-09-22 13:14:47.247864-06	2020-09-22 13:14:47.247864-06
-99	In the episode, “Goodbye Michael,” what does Pam say Michael seems full of at the end of the episode?	Hope	\N	2020-09-22 13:14:47.257861-06	2020-09-22 13:14:47.257861-06
-63	What is the name of Kevin’s cover band?	Scrantonicity	\N	2020-09-22 13:14:47.203227-06	2020-09-22 13:14:47.203227-06
-80	Who was a phone operator for 1-800-Dentist when she auditioned for The Office?	Angela Kinsey	\N	2020-09-22 13:14:47.23582-06	2020-09-22 13:14:47.23582-06
-90	Who is the Assistant to the Regional Manager?	Dwight Schrute	\N	2020-09-22 13:14:47.248447-06	2020-09-22 13:14:47.248447-06
-100	In the episode “Chair Model,” Pam would receive Michael’s chair when he got a new one. Who would get Pam’s chair?	Creed	\N	2020-09-22 13:14:47.258401-06	2020-09-22 13:14:47.258401-06
-72	How does Jan break Michael’s TV in the“Dinner Party” episode?	With a Dundie award	\N	2020-09-22 13:14:47.227542-06	2020-09-22 13:14:47.227542-06
-91	Who was sent to anger management?	Andy	\N	2020-09-22 13:14:47.249088-06	2020-09-22 13:14:47.249088-06
+COPY public."theOfficeTrivia" (id, question, answer, "triviaGames_id", created_at, updated_at) FROM stdin;
+413	The casting team originally wanted who to audition for the role of Dwight?	John Krasinski	7	2020-10-06 11:16:41.188729-06	2020-10-06 11:16:41.188729-06
+414	John Krasinski, Mindy Kaling, and who else were all, at one point, interns at Late Night With Conan O’Brien?	Angela Kinsey	7	2020-10-06 11:16:41.208104-06	2020-10-06 11:16:41.208104-06
+415	Who almost didn’t work in The Office because he was committed to another NBC show called Come to Papa?	Steve Carell	7	2020-10-06 11:16:41.210161-06	2020-10-06 11:16:41.210161-06
+416	During his embarrassing Dundie award presentation, whom is Michael Scott presenting a Dundie award when he sings along to “You Sexy Thing” by ’70s British funk band Hot Chocolate?	Ryan	7	2020-10-06 11:16:41.2122-06	2020-10-06 11:16:41.2122-06
+417	In “The Alliance” episode, Michael is asked by Oscar to donate to his nephew’s walkathon for a charity. How much money does Michael donate, not realizing that the donation is per mile and not a flat amount?	$25	7	2020-10-06 11:16:41.213735-06	2020-10-06 11:16:41.213735-06
+418	Which character became Jim’s love interest after he moved to the Stamford branch in season three and joined the Scranton office during the merger?	Karen Filippelli	7	2020-10-06 11:16:41.219023-06	2020-10-06 11:16:41.219023-06
+419	What county in Pennsylvania is Dunder Mifflin Scranton branch located?	Lackawanna County	7	2020-10-06 11:16:41.220664-06	2020-10-06 11:16:41.220664-06
+420	What is the exclusive club that Pam, Oscar, and Toby Flenderson establish in the episode “Branch Wars”?	Finer Things Club	7	2020-10-06 11:16:41.222673-06	2020-10-06 11:16:41.222673-06
+421	What substance does Jim put office supplies owned by Dwight into?	Jello	7	2020-10-06 11:16:41.223397-06	2020-10-06 11:16:41.223397-06
+422	What is the name of the employee who started out as “the temp” in the Dunder Mifflin office?	Ryan	7	2020-10-06 11:16:41.230121-06	2020-10-06 11:16:41.230121-06
+423	Rainn Wilson did not originally audition for the part of the iconic beet farming Dwight Schrute, instead he auditioned for which part?	Michael Scott	7	2020-10-06 11:16:41.230673-06	2020-10-06 11:16:41.230673-06
+424	Dwight owns and runs a farm in his spare time. What does this farm primarily produce?	Beets	7	2020-10-06 11:16:41.231897-06	2020-10-06 11:16:41.231897-06
+425	In “Diversity Day” episode what famous comedian’s stand up routine does Michael imitate?	Chris Rock	7	2020-10-06 11:16:41.236165-06	2020-10-06 11:16:41.236165-06
+426	In the episode “The Client”, the employees were reading Michael’s movie script. Which employee read the part of Goldenface?	Oscar	7	2020-10-06 11:16:41.2367-06	2020-10-06 11:16:41.2367-06
+427	What does Michael burn his foot on?	A George Foreman Grill that he was cooking bacon on	7	2020-10-06 11:16:41.237237-06	2020-10-06 11:16:41.237237-06
+428	Who are the three main members of the party planning committee?	Phyllis, Angela, and Pam	7	2020-10-06 11:16:41.237734-06	2020-10-06 11:16:41.237734-06
+429	What does Michael pretend to fire Pam over in season one?	Stealing Post-It notes	7	2020-10-06 11:16:41.240205-06	2020-10-06 11:16:41.240205-06
+430	What kind of sandwich does Michael have a dream about when he’s the head of Michael Scott Paper Company?	Peanut butter and tunafish	7	2020-10-06 11:16:41.24092-06	2020-10-06 11:16:41.24092-06
+431	What’s the name of Dwight’s porcupine who he used to make it look like Jim was pranking him?	Henrietta	7	2020-10-06 11:16:41.244098-06	2020-10-06 11:16:41.244098-06
+432	What’s in the thermos that Michael offers Pam during morning deliveries for the Michael Scott Paper Company?	Milk and sugar	7	2020-10-06 11:16:41.244987-06	2020-10-06 11:16:41.244987-06
+433	What brand is Michael Scott wearing on the day he accidentally wearing a woman’s suit?	MISSsterious	7	2020-10-06 11:16:41.246361-06	2020-10-06 11:16:41.246361-06
+434	Who does Michael wear on his head during the activity on diversity day?	Martin Luther King Jr.	7	2020-10-06 11:16:41.246905-06	2020-10-06 11:16:41.246905-06
+435	During the episode, “Prince Family Paper,” what’s the secret signal that Dwight and Michael agree on using?	Licking your lips	7	2020-10-06 11:16:41.247413-06	2020-10-06 11:16:41.247413-06
+436	Who calls Jim by the nicknames “Tuna” or “Big Tuna”?	Andy	7	2020-10-06 11:16:41.248959-06	2020-10-06 11:16:41.248959-06
+437	At Jim and Pam’s wedding in the “Niagara” episode, what was Kevin wearing on his feet?	Tissue Boxes	7	2020-10-06 11:16:41.251152-06	2020-10-06 11:16:41.251152-06
+438	What does Jim use to make Dwight salivate in “Phyllis’ Wedding”?	Altoids	7	2020-10-06 11:16:41.253406-06	2020-10-06 11:16:41.253406-06
+439	What does Michael eat instead of ice cream because they don’t have any?	Mayo and black olives	7	2020-10-06 11:16:41.253915-06	2020-10-06 11:16:41.253915-06
+440	In the episode “The Coup”, the members of the Stamford branch play what video game with each other?	Call of Duty	7	2020-10-06 11:16:41.25492-06	2020-10-06 11:16:41.25492-06
+441	What of the following colors does Angela think is “whore-ish”?	Green	7	2020-10-06 11:16:41.255655-06	2020-10-06 11:16:41.255655-06
+442	Jim Halpert knows the flavor of yogurt that Pam likes best, what is it?	Mixed Berry	7	2020-10-06 11:16:41.256262-06	2020-10-06 11:16:41.256262-06
+443	Who took over Pam as the receptionist after she went to art school in season 5?	Ryan	7	2020-10-06 11:16:41.256809-06	2020-10-06 11:16:41.256809-06
+444	Who runs the warehouse below the Dunder Mifflin offices?	Darryl	7	2020-10-06 11:16:41.257465-06	2020-10-06 11:16:41.257465-06
+445	What does Dwight keep a pair of in his car for special occasions?	Birkenstocks	7	2020-10-06 11:16:41.258606-06	2020-10-06 11:16:41.258606-06
+446	What is Toby’s daughter’s name?	Sasha	7	2020-10-06 11:16:41.261176-06	2020-10-06 11:16:41.261176-06
+447	What is the name of the actor who plays Toby Flenderson?	Paul Lieberstein	7	2020-10-06 11:16:41.263899-06	2020-10-06 11:16:41.263899-06
+448	Which actor shares his entire name with his character?	Creed Bratton	7	2020-10-06 11:16:41.264563-06	2020-10-06 11:16:41.264563-06
+449	In 2019 Jenna Fischer and who else started an Office re-watch podcast entitled “The Office Ladies”?	Angela Kingsey	7	2020-10-06 11:16:41.26556-06	2020-10-06 11:16:41.26556-06
+450	In the episode “Fun Run”, who are the three employees that go out to eat in the middle of the run?	Creed, Oscar and Stanley	7	2020-10-06 11:16:41.26809-06	2020-10-06 11:16:41.26809-06
+451	Who served on the jury for the Scranton strangler case?	Toby Flenderson	7	2020-10-06 11:16:41.269162-06	2020-10-06 11:16:41.269162-06
+452	Who punches a hole in the wall in between Michael’s office and the conference room?	Andy	7	2020-10-06 11:16:41.269661-06	2020-10-06 11:16:41.269661-06
+453	NBC passed a pilot for a spin-off called “The Farm.” Who was it about?	Dwight Schrute	7	2020-10-06 11:16:41.270132-06	2020-10-06 11:16:41.270132-06
+454	After the show was first picked up, what did NBC planned on retitling the series in order to differentiate it from the original British version?	“The American Workplace”	7	2020-10-06 11:16:41.27068-06	2020-10-06 11:16:41.27068-06
+455	What actor starred in the British version of The Office?	Ricky Gervais	7	2020-10-06 11:16:41.272992-06	2020-10-06 11:16:41.272992-06
+456	Who is the proud owner of a Cornell hockey bobblehead?	Andy	7	2020-10-06 11:16:41.273529-06	2020-10-06 11:16:41.273529-06
+457	Through out the show it was revealed that one of the members of the office graduated High School with Michael. Who was it?	Phyllis	7	2020-10-06 11:16:41.274538-06	2020-10-06 11:16:41.274538-06
+458	In the Season 4 pilot episode “Fun Run”, what cause does Michael organize a fun run for?	Rabies	7	2020-10-06 11:16:41.275617-06	2020-10-06 11:16:41.275617-06
+459	What is the number one rated Country and Western station in Scranton, Pennsylvania? (hint it’s a bumper sticker on Dwight’s desk)	Froggy 101	7	2020-10-06 11:16:41.276457-06	2020-10-06 11:16:41.276457-06
+461	In what episode does Jim propose to Pam?	“Weight Loss”	7	2020-10-06 11:16:41.279071-06	2020-10-06 11:16:41.279071-06
+460	What color does Dwight paint Michael’s office when he thinks he’s taking over Michael’s job?	Black	7	2020-10-06 11:16:41.278337-06	2020-10-06 11:16:41.278337-06
+469	What is Michael’s username for the online dating website?	Little Kid Lover	7	2020-10-06 11:16:41.288706-06	2020-10-06 11:16:41.288706-06
+478	In the episode “Basketball,” who does Michael say is on the team, ‘of course’?	Stanley	7	2020-10-06 11:16:41.298915-06	2020-10-06 11:16:41.298915-06
+488	Who is the Regional Manager at Dunder Mifflin?	Michael Scott	7	2020-10-06 11:16:41.30929-06	2020-10-06 11:16:41.30929-06
+497	Which warehouse employee was engaged to Pam?	Roy	7	2020-10-06 11:16:41.320659-06	2020-10-06 11:16:41.320659-06
+507	Who is the Human Resources representative at Dunder Mifflin?	Toby	7	2020-10-06 11:16:41.331539-06	2020-10-06 11:16:41.331539-06
+462	Which network produced “The Office”?	NBC	7	2020-10-06 11:16:41.280375-06	2020-10-06 11:16:41.280375-06
+471	Whose mother does Michael date?	Pam	7	2020-10-06 11:16:41.289813-06	2020-10-06 11:16:41.289813-06
+480	In the “St. Patrick’s Day” episode, who gets sick on their first date with Andy?	Erin	7	2020-10-06 11:16:41.301618-06	2020-10-06 11:16:41.301618-06
+490	In the episode, “Diwali”, who attempts to kiss Pam?	Michael	7	2020-10-06 11:16:41.312371-06	2020-10-06 11:16:41.312371-06
+499	When is Michael’s birthday?	March 15	7	2020-10-06 11:16:41.321571-06	2020-10-06 11:16:41.321571-06
+509	In the episode “Take Your Daughter to Work Day,” one employee’s daughter is flirting with Ryan Howard. Whose daughter was it?	Stanley	7	2020-10-06 11:16:41.33413-06	2020-10-06 11:16:41.33413-06
+463	What is the middle name of Gabe Lewis?	Susan	7	2020-10-06 11:16:41.281696-06	2020-10-06 11:16:41.281696-06
+472	What is Scranton’s nickname?	The Electric City	7	2020-10-06 11:16:41.291088-06	2020-10-06 11:16:41.291088-06
+481	What did Phyllis ask Michael to do in her wedding?	Push her father down the isle in his wheelchair	7	2020-10-06 11:16:41.302933-06	2020-10-06 11:16:41.302933-06
+491	How does Michael describe the wine in the episode, “Dinner Party”?	An oaky afterbirth	7	2020-10-06 11:16:41.313548-06	2020-10-06 11:16:41.313548-06
+504	Which character speaks the the first line of the series and which character delivers the final line?	Michael Scott (Steve Carell), Pam Beesly (Jenna Fischer)	7	2020-10-06 11:16:41.329989-06	2020-10-06 11:16:41.329989-06
+464	What actor played Robert California?	James Spader	7	2020-10-06 11:16:41.282571-06	2020-10-06 11:16:41.282571-06
+482	Who wins the Fun Run in season 4?	Toby Flenderson	7	2020-10-06 11:16:41.303821-06	2020-10-06 11:16:41.303821-06
+494	Who was responsible for casting The Office characters?	Allison Jones	7	2020-10-06 11:16:41.318465-06	2020-10-06 11:16:41.318465-06
+503	Who was sent to anger management?	Andy	7	2020-10-06 11:16:41.329038-06	2020-10-06 11:16:41.329038-06
+513	After the Fun Run to beat Rabies, to whom is the oversized check made out?	Science	7	2020-10-06 11:16:41.338497-06	2020-10-06 11:16:41.338497-06
+465	Which of Angela’s cats does Dwight freeze?	Sprinkles	7	2020-10-06 11:16:41.286034-06	2020-10-06 11:16:41.286034-06
+474	Who convinces Dwight that he is being recruited by the CIA?	Pam	7	2020-10-06 11:16:41.295902-06	2020-10-06 11:16:41.295902-06
+483	What song does Michael dance down the aisle to during Pam and Jim’s wedding?	“Forever” by Chris Brown	7	2020-10-06 11:16:41.305423-06	2020-10-06 11:16:41.305423-06
+492	Who was a phone operator for 1-800-Dentist when she auditioned for The Office?	Angela Kinsey	7	2020-10-06 11:16:41.316149-06	2020-10-06 11:16:41.316149-06
+501	Jenna Fischer kept what after the series wrapped up?	Pam’s engagement ring	7	2020-10-06 11:16:41.325816-06	2020-10-06 11:16:41.325816-06
+511	In the episode, “Goodbye Michael,” what does Pam say Michael seems full of at the end of the episode?	Hope	7	2020-10-06 11:16:41.337567-06	2020-10-06 11:16:41.337567-06
+466	Which cast member was having an affair with Angela’s fiancé, the senator?	Oscar	7	2020-10-06 11:16:41.286528-06	2020-10-06 11:16:41.286528-06
+475	What is the name of Kevin’s cover band?	Scrantonicity	7	2020-10-06 11:16:41.296808-06	2020-10-06 11:16:41.296808-06
+484	How does Jan break Michael’s TV in the“Dinner Party” episode?	With a Dundie award	7	2020-10-06 11:16:41.305866-06	2020-10-06 11:16:41.305866-06
+493	Which one of Michael’s girlfriends in The Office was played by Steve Carell’s real-life wife?	Carol	7	2020-10-06 11:16:41.317674-06	2020-10-06 11:16:41.317674-06
+502	Who is the Assistant to the Regional Manager?	Dwight Schrute	7	2020-10-06 11:16:41.327954-06	2020-10-06 11:16:41.327954-06
+512	In the episode “Chair Model,” Pam would receive Michael’s chair when he got a new one. Who would get Pam’s chair?	Creed	7	2020-10-06 11:16:41.338048-06	2020-10-06 11:16:41.338048-06
+467	Which office employee did Michael hit with his car?	Meredith	7	2020-10-06 11:16:41.287717-06	2020-10-06 11:16:41.287717-06
+476	Where does Jim propose to Pam?	Gas station	7	2020-10-06 11:16:41.297724-06	2020-10-06 11:16:41.297724-06
+486	What actor from The Office and John Krasinski went to the same high school?	B.J. Novak	7	2020-10-06 11:16:41.307417-06	2020-10-06 11:16:41.307417-06
+495	In the episode “Basketball,” after the game between the office workers and warehouse workers, one of the office workers is shown continuously making shots. Which employee is it?	Kevin	7	2020-10-06 11:16:41.319725-06	2020-10-06 11:16:41.319725-06
+505	Who plays Todd Packer, a former employee and Michael’s friend?	David Koechner	7	2020-10-06 11:16:41.330501-06	2020-10-06 11:16:41.330501-06
+514	Based on where he eats most often, what is Michael Scott’s favorite restaurant?	Chili’s	7	2020-10-06 11:16:41.339365-06	2020-10-06 11:16:41.339365-06
+468	Who started the fire?	Ryan	7	2020-10-06 11:16:41.288194-06	2020-10-06 11:16:41.288194-06
+477	Angela, played by Angela Kinsey, mentions that her favorite song is what?	Little Drummer Boy	7	2020-10-06 11:16:41.298386-06	2020-10-06 11:16:41.298386-06
+487	What item of clothing does Michael insist on having dry cleaned?	His jeans	7	2020-10-06 11:16:41.308411-06	2020-10-06 11:16:41.308411-06
+496	What can Dwight Shrute supposedly raise and lower at his will?	His cholesterol	7	2020-10-06 11:16:41.320181-06	2020-10-06 11:16:41.320181-06
+506	What is the name of Phyllis’ husband who also happens to work in the same office complex?	Bob Vance	7	2020-10-06 11:16:41.330968-06	2020-10-06 11:16:41.330968-06
+515	What art school did Pam go to?	Pratt Institute	7	2020-10-06 11:16:41.340009-06	2020-10-06 11:16:41.340009-06
+470	What vegetable does Michael force feed Kevin?	Broccoli	7	2020-10-06 11:16:41.289192-06	2020-10-06 11:16:41.289192-06
+479	Where did Michael get his “World’s Best Boss” mug?	Spencer Gifts	7	2020-10-06 11:16:41.299702-06	2020-10-06 11:16:41.299702-06
+489	Who wins the bronze medal in the episode, “Office Olympics”?	Jim	7	2020-10-06 11:16:41.311292-06	2020-10-06 11:16:41.311292-06
+498	What movie does Michael say that Dwight cried during?	Armageddon	7	2020-10-06 11:16:41.321109-06	2020-10-06 11:16:41.321109-06
+508	In the episode “Andy’s Play”, Andy Bernard performed in a local theatre production of what?	Sweeney Todd	7	2020-10-06 11:16:41.33256-06	2020-10-06 11:16:41.33256-06
+473	In the season 2 episode “Christmas Party,” what Secret Santa gift does Jim get Pam?	Teapot	7	2020-10-06 11:16:41.292136-06	2020-10-06 11:16:41.292136-06
+485	What actor on The Office shot the opening credit footage?	John Krasinski	7	2020-10-06 11:16:41.306792-06	2020-10-06 11:16:41.306792-06
+500	In almost every meeting, Stanley is seen doing what?	A crossword puzzel	7	2020-10-06 11:16:41.322764-06	2020-10-06 11:16:41.322764-06
+510	What is the the name of the annual employee awards night on the show?	Dundies	7	2020-10-06 11:16:41.335909-06	2020-10-06 11:16:41.335909-06
 \.
 
 
@@ -303,8 +303,8 @@ COPY public."theOfficeTrivia" (id, "triviaQuestion", "triviaAnswer", trivia_id, 
 -- Data for Name: triviaGames; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public."triviaGames" (id, "triviaName", created_at, updated_at) FROM stdin;
-2	The Office	2020-09-22 13:14:47.085242-06	2020-09-22 13:14:47.085242-06
+COPY public."triviaGames" (id, name, created_at, updated_at) FROM stdin;
+7	The Office	2020-10-06 11:16:41.179611-06	2020-10-06 11:16:41.179611-06
 \.
 
 
@@ -312,7 +312,7 @@ COPY public."triviaGames" (id, "triviaName", created_at, updated_at) FROM stdin;
 -- Name: knex_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.knex_migrations_id_seq', 1, true);
+SELECT pg_catalog.setval('public.knex_migrations_id_seq', 7, true);
 
 
 --
@@ -326,14 +326,14 @@ SELECT pg_catalog.setval('public.knex_migrations_lock_index_seq', 1, true);
 -- Name: theOfficeTrivia_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."theOfficeTrivia_id_seq"', 103, true);
+SELECT pg_catalog.setval('public."theOfficeTrivia_id_seq"', 515, true);
 
 
 --
 -- Name: triviaGames_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."triviaGames_id_seq"', 2, true);
+SELECT pg_catalog.setval('public."triviaGames_id_seq"', 7, true);
 
 
 --
@@ -369,11 +369,11 @@ ALTER TABLE ONLY public."triviaGames"
 
 
 --
--- Name: theOfficeTrivia theofficetrivia_trivia_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: theOfficeTrivia theofficetrivia_triviagames_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public."theOfficeTrivia"
-    ADD CONSTRAINT theofficetrivia_trivia_id_foreign FOREIGN KEY (trivia_id) REFERENCES public."triviaGames"(id);
+    ADD CONSTRAINT theofficetrivia_triviagames_id_foreign FOREIGN KEY ("triviaGames_id") REFERENCES public."triviaGames"(id);
 
 
 --

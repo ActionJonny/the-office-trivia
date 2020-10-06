@@ -48,10 +48,14 @@ const appendIncorrect = (answer) => {
 
 const compareAnswers = (answer, userAnswer) => {
   let compareArr = [];
-  for(i = 0; i < userAnswer.length; i++) {
-    answer.toLowerCase()[i] == userAnswer.toLowerCase()[i]
+  if (userAnswer.length > 0) {
+    for(i = 0; i < userAnswer.length; i++) {
+      answer.toLowerCase()[i] == userAnswer.toLowerCase()[i]
       ? compareArr.push(true) : compareArr.push(false);
-  };
+    };
+  } else {
+    compareArr.push(false)
+  }
 
   compareArr.includes(false) ? appendIncorrect(answer) : appendCorrect();
 };

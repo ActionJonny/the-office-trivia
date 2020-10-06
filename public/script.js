@@ -70,12 +70,7 @@ $('.questionContainer').on('click', '.answerSubmit', function() {
   $('.answerSubmit')[0].disabled = true;
 
   compareAnswers(answer, userAnswer);
-
 });
-
-$('.questionContainer').on('click', '.answerSubmit', function() {
-  window.scrollTo(0, 1000);
-})
 
 $('.questionContainer').on('click', '.nextQuestion', function() {
   fetchQuestions();

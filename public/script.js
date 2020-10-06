@@ -28,7 +28,8 @@ const appendQuestion = obj => {
 
 const appendCorrect = () => {
   let randomNumber = Math.floor(Math.random() * (9 - 1 + 1) + 1);
-
+  window.scrollBy(0, 150);
+  
   $('.questionCard').append(`
     <div class="correct">Correct!</div>
     <img src="./images/correct/${ randomNumber }.svg">
@@ -38,6 +39,7 @@ const appendCorrect = () => {
 
 const appendIncorrect = (answer) => {
   let randomNumber = Math.floor(Math.random() * (9 - 1 + 1) + 1);
+  window.scrollBy(0, 150);
 
   $('.questionCard').append(`
     <div class="incorrect">The correct answer is: ${ answer } </div>
@@ -70,7 +72,6 @@ $('.questionContainer').on('click', '.answerSubmit', function() {
   $('.answerSubmit')[0].disabled = true;
 
   compareAnswers(answer, userAnswer);
-  window.scrollBy(0, 150);
 });
 
 $('.questionContainer').on('click', '.nextQuestion', function() {

@@ -11,7 +11,7 @@ const fetchQuestions = () => {
   .then(json => {
     let randomNumber = Math.floor(Math.random() * (json.length - 0));
 
-    appendQuestion(json[413]);
+    appendQuestion(json[randomNumber]);
   });
 };
 

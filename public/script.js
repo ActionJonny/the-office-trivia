@@ -55,8 +55,8 @@ const compareAnswers = (answer, userAnswer) => {
       ? compareArr.push(true) : compareArr.push(false);
     };
   } else {
-    compareArr.push(false)
-  }
+    compareArr.push(false);
+  };
 
   compareArr.includes(false) ? appendIncorrect(answer) : appendCorrect();
 };
@@ -70,11 +70,6 @@ $('.questionContainer').on('click', '.answerSubmit', function() {
   $('.answerSubmit')[0].disabled = true;
 
   compareAnswers(answer, userAnswer);
-
-  window.scrollBy({
-    bottom: 0,
-    behavior: 'smooth'
-  });
 });
 
 $('.questionContainer').on('click', '.nextQuestion', function() {

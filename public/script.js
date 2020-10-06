@@ -28,24 +28,26 @@ const appendQuestion = obj => {
 
 const appendCorrect = () => {
   let randomNumber = Math.floor(Math.random() * (9 - 1 + 1) + 1);
-  window.scrollBy(0, 150);
-  
+
   $('.questionCard').append(`
     <div class="correct">Correct!</div>
     <img src="./images/correct/${ randomNumber }.svg">
     <button class="nextQuestion">Next Question</button>
   `);
+
+  window.scrollBy(0, 150);
 };
 
 const appendIncorrect = (answer) => {
   let randomNumber = Math.floor(Math.random() * (9 - 1 + 1) + 1);
-  window.scrollBy(0, 150);
 
   $('.questionCard').append(`
     <div class="incorrect">The correct answer is: ${ answer } </div>
     <img src="./images/incorrect/${ randomNumber }.svg">
     <button class="nextQuestion">Next Question</button>
   `);
+
+  window.scrollBy(0, 150);
 };
 
 const compareAnswers = (answer, userAnswer) => {

@@ -24,6 +24,16 @@ const pool = new Pool({
   }
 });
 
+pool.connect();
+
+pool.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
+  if (err) throw err;
+  for (let row of res.rows) {
+    console.log(JSON.stringify(row));
+  }
+  pool.end();
+});
+
 app.get('/', (request, response) => {
   fs.readFile(`${__dirname}/index.html`, (err, file) => {
     response.send(file);

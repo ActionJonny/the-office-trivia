@@ -1,16 +1,15 @@
 const triviaData = require('../../../triviaQuestionsAnswers');
 
 const createTrivia = async (knex, trivia) => {
-  const triviaId = await knex('trivias').insert({
+  const triviaId = await knex('triviaGames').insert({
     name: trivia.name
   }, 'id');
 
   let questionPromises = trivia.questions.map(questionObj => {
-    console.log(triviaId, 'triviaId');
     return createQuestion(knex, {
       question: questionObj.question,
       answer: questionObj.answer,
-      trivias_id: triviaId[0]
+      triviaGames_id: triviaId[0]
     });
   });
 
@@ -18,13 +17,14 @@ const createTrivia = async (knex, trivia) => {
 };
 
 const createQuestion = (knex, question) => {
-  return knex('questions').insert(question);
+
+  return knex('theOfficeTrivia').insert(question);
 };
 
 exports.seed = async (knex) => {
   try {
-    await knex('questions').del();
-    await knex('trivias').del();
+    await knex('theOfficeTrivia').del();
+    await knex('triviaGames').del();
 
     let triviaPromises = triviaData.map(trivia => {
       return createTrivia(knex, trivia);

@@ -34,8 +34,6 @@ const appendCorrect = () => {
     <img src="./images/correct/${ randomNumber }.svg">
     <button class="nextQuestion">Next Question</button>
   `);
-
-  window.scrollBy(0, 150);
 };
 
 const appendIncorrect = (answer) => {
@@ -46,8 +44,6 @@ const appendIncorrect = (answer) => {
     <img src="./images/incorrect/${ randomNumber }.svg">
     <button class="nextQuestion">Next Question</button>
   `);
-
-  window.scrollBy(0, 150);
 };
 
 const compareAnswers = (answer, userAnswer) => {
@@ -74,6 +70,11 @@ $('.questionContainer').on('click', '.answerSubmit', function() {
   $('.answerSubmit')[0].disabled = true;
 
   compareAnswers(answer, userAnswer);
+
+  window.scrollBy({
+    bottom: 0,
+    behavior: 'smooth'
+  });
 });
 
 $('.questionContainer').on('click', '.nextQuestion', function() {

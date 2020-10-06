@@ -21,13 +21,6 @@ app.get('/', (request, response) => {
   });
 });
 
-app.get('/dev', (request, response) => {
-  fs.readFile(`${__dirname}/dev.html`, (err, file) => {
-    console.log(err);
-    response.send(file);
-  });
-})
-
 app.get('/api/v1/trivia', async (request, response) => {
   try {
     const triviaQuestions = await database('theOfficeTrivia').select();

@@ -6,6 +6,7 @@ const createTrivia = async (knex, trivia) => {
   }, 'id');
 
   let questionPromises = trivia.questions.map(questionObj => {
+    console.log(triviaId, 'triviaId');
     return createQuestion(knex, {
       question: questionObj.question,
       answer: questionObj.answer,

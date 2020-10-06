@@ -70,6 +70,7 @@ $('.questionContainer').on('click', '.answerSubmit', function() {
   $('.answerSubmit')[0].disabled = true;
 
   compareAnswers(answer, userAnswer);
+  window.scrollBy(0, 150);
 });
 
 $('.questionContainer').on('click', '.nextQuestion', function() {

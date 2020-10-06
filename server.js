@@ -21,6 +21,13 @@ app.get('/', (request, response) => {
   });
 });
 
+app.get('/dev', (request, response) => {
+  fs.readFile(`${__dirname}/dev.html`, (err, file) => {
+    console.log(err);
+    response.send(file);
+  });
+})
+
 app.get('/api/v1/trivia', async (request, response) => {
   try {
     const triviaQuestions = await database('theOfficeTrivia').select();
@@ -33,11 +40,17 @@ app.get('/api/v1/trivia', async (request, response) => {
 
 app.delete('/api/v1/trivia/:id', async (request, response) => {
   try {
-    
+    database('theOfficeTrivia').where('id', request.params.id).del()
+    .then(() => {
+      database('theOfficeTrivia').select();
+    })
+    .then(() => {
+      response.status(200).send(`${theOfficeTrivia[0].question} was removed from the database.`);
+    });
   } catch (error) {
-    response.status(500).json({ error })
-  }
-})
+    response.status(404).send('That question was not found');
+  };
+});
 
 app.listen(app.get('port'), () => {
   console.log(`${app.locals.title} is running on http://localhost:${app.get('port')}.`);

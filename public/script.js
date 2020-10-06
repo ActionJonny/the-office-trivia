@@ -47,10 +47,11 @@ const appendIncorrect = (answer) => {
 };
 
 const compareAnswers = (answer, userAnswer) => {
+  let user = userAnswer.trim();
   let compareArr = [];
-  if (userAnswer.length > 0) {
-    for(i = 0; i < userAnswer.length; i++) {
-      answer.toLowerCase()[i] == userAnswer.toLowerCase()[i]
+  if (user.length > 0) {
+    for(i = 0; i < user.length; i++) {
+      answer.toLowerCase()[i] == user.toLowerCase()[i]
       ? compareArr.push(true) : compareArr.push(false);
     };
   } else {

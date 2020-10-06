@@ -1,52 +1,54 @@
-body {
-  background-color: #17459D;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  font-family: Helvetica;
-  text-align: center;
-}
+@media screen and (max-width: 700px) {
+  body {
+    background-color: #17459D;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    font-family: Helvetica;
+    text-align: center;
+  }
 
-.answerInput {
-  border: none;
-  padding: 5px;
-  width: 75%;
-}
+  .answerInput {
+    border: none;
+    padding: 5px;
+    width: 75%;
+  }
 
-.answerSubmit,
-.nextQuestion {
-  margin-top: 10px;
-  padding: 5px;
-  width: 75%;
-}
+  .answerSubmit,
+  .nextQuestion {
+    margin-top: 10px;
+    padding: 5px;
+    width: 75%;
+  }
 
-.correct,
-.incorrect {
-  margin-top: 10px;
-  font-size: 16px;
-}
+  .correct,
+  .incorrect {
+    margin-top: 10px;
+    font-size: 16px;
+  }
 
-.question {
-  padding: 10px;
-}
+  .question {
+    padding: 10px;
+  }
 
-.title {
-  padding-top: 25%;
-}
+  .title {
+    padding-top: 25%;
+  }
 
-img {
-  margin-top: 25px;
-  width: 250px;
-  border-radius: 25%;
-  background-color: #ffffff;
-}
+  img {
+    margin-top: 25px;
+    width: 250px;
+    border-radius: 25%;
+    background-color: #ffffff;
+  }
 
-button {
-  background-color: #17459D;
-  border-color: #ffffff;
-  color: #ffffff;
-}
+  button {
+    background-color: #17459D;
+    border-color: #ffffff;
+    color: #ffffff;
+  }
 
-button:disabled {
-  background-color: gray;
-}
+  button:disabled {
+    background-color: gray;
+  }
+};
